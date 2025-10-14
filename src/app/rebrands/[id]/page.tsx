@@ -28,8 +28,8 @@ export async function generateMetadata(
   const rebrand = rebrands.find(r => r.id === id);
   
   if (!rebrand) {
-    const parentMetadata = await parent;
-    return parentMetadata;
+    await parent;
+    return {};
   }
 
   const keywords = [
