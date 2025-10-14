@@ -100,7 +100,7 @@ Open an issue describing the idea. Include:
 
 - Short description
 - Expected data schema changes (if any)
-- Example entries or mockups 
+- Example entries or mockups
 
 ## Content Style Guide
 
@@ -128,4 +128,3 @@ Open an issue describing the idea. Include:
 MIT — see `LICENSE` for details.
 
 All brand assets belong to their respective owners. By contributing assets you confirm you have permission to share them.
-# design3
