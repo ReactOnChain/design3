@@ -100,7 +100,7 @@ Open an issue describing the idea. Include:
 
 - Short description
 - Expected data schema changes (if any)
-- Example entries or mockups
+- Example entries or mockups 
 
 ## Content Style Guide
 

@@ -1,0 +1,14 @@
+
+> web3rebrands@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.2.1
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.0.2:3000
+
+ ✓ Starting...
+ ✓ Ready in 1076ms
+ ○ Compiling / ...
+ ✓ Compiled / in 2.1s (814 modules)
+ GET / 200 in 2376ms
+ ✓ Compiled in 283ms (347 modules)
