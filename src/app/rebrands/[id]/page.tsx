@@ -4,10 +4,12 @@ import RebrandClientWrapper from "../../../components/RebrandClientWrapper";
 import { Metadata } from 'next';
 import type { ResolvingMetadata } from 'next';
 
-interface Props {
-  params: {
-    id: string;
-  };
+interface RouteParams {
+  id: string;
+}
+
+interface PageProps {
+  params: Promise<RouteParams>;
 }
 
 export function generateStaticParams() {
@@ -18,19 +20,18 @@ export function generateStaticParams() {
 
 // Generate dynamic metadata for the rebrand page based on its ID
 export async function generateMetadata(
-  { params }: Props,
+  { params }: PageProps,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  // Find the specific rebrand by ID
-  const rebrand = rebrands.find(r => r.id === params.id);
+  const { id } = await params;
+
+  const rebrand = rebrands.find(r => r.id === id);
   
-  // If rebrand not found, return parent metadata
   if (!rebrand) {
     const parentMetadata = await parent;
     return parentMetadata;
   }
 
-  // Extract keywords based on available data
   const keywords = [
     rebrand.name, 
     'rebrand', 
@@ -40,11 +41,9 @@ export async function generateMetadata(
     'brand identity'
   ];
 
-  // Add oldName and newName to keywords if they exist
   if (rebrand.oldName) keywords.push(rebrand.oldName);
   if (rebrand.newName) keywords.push(rebrand.newName);
 
-  // Build optimized metadata for this specific rebrand
   const metadata: Metadata = {
     title: `${rebrand.name} Rebrand - ${rebrand.year}`,
     description: `Explore ${rebrand.name}'s rebrand from ${rebrand.year}. ${rebrand.description} Designed by ${rebrand.designAgency || 'their design team'} in the ${rebrand.sector} sector.`,
@@ -72,8 +71,10 @@ export async function generateMetadata(
   return metadata;
 }
 
-export default function RebrandDetail({ params }: Props) {
-  const rebrand = rebrands.find((r) => r.id === params.id);
+export default async function RebrandDetail({ params }: PageProps) {
+  const { id } = await params;
+
+  const rebrand = rebrands.find((r) => r.id === id);
 
   if (!rebrand) {
     notFound();
